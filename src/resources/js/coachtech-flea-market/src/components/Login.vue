@@ -19,7 +19,7 @@ const login = async () => {
     const token = json.data.token;
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     localStorage.setItem("token", token);
-    //router.push({ name: "" });
+    router.push({ name: "item" });
 }
 
 const navigateToRegister = () => {

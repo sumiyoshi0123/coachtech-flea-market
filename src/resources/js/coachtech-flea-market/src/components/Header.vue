@@ -26,7 +26,7 @@ const register = () => {
 //ログアウト
 const logout = async () => {
     localStorage.removeItem('token');
-    router.push({ name: "login" });
+    router.push({ name: "item" });
 }
 
 //マイページ画面へ
@@ -41,7 +41,7 @@ const searchKeyword = ref('');
 <template>
     <div class="header">
         <img class="header_img" :src="logo" alt="Header Image" />
-        <input class="search_Keyword" placeholder="何をお探しですか？" v-model="searchKeyword">
+        <input class="search_Keyword" placeholder="なにをお探しですか？" v-model="searchKeyword">
         <button class="login_button" v-if="!isLoggedIn" @click="login">ログイン</button>
         <button class="register_button" v-if="!isLoggedIn" @click="register">会員登録</button>
         <button class="logout_button" v-if="isLoggedIn" @click="logout">ログアウト</button>
@@ -53,12 +53,34 @@ const searchKeyword = ref('');
 <style>
 .header {
     display: flex;
+    justify-content: space-between;
     text-align: center;
-    padding: 20px;
+    width: 100%;
+    background-color: black;
 }
-
 .header_img {
     max-width: 100%;
     height: auto;
+    padding: 20px;
+}
+.search_Keyword{
+    width: 400px;
+    margin: 15px;
+    border-radius: 3px;
+    border: none;
+}
+.login_button, .register_button, .logout_button, .myPage_button{
+    border-radius: 3px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.sell_button{
+    width: 80px;
+    margin: 15px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
 }
 </style>

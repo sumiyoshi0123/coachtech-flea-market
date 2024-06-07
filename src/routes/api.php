@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,8 @@ Route::post('/login', function (Request $request) {
 });
 
 Route::middleware((['auth:sanctum']))->group(function () {
-
+    Route::post('/like', [LikeController::class, 'toggleLike']);
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
+Route::apiResource('/item', ItemController::class);
