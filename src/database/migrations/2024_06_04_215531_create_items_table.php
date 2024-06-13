@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('brand');
             $table->integer('price');
             $table->string('img_url');
             $table->text('description');

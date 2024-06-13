@@ -18788,11 +18788,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     __expose();
     var item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
       name: '',
+      brand: '',
       price: 0,
       description: '',
       img_url: '',
-      like: false // 初期状態としてお気に入りの状態を持つ
+      likes: false // 初期状態としてお気に入りの状態を持つ
     });
+    var likesCount = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
+    var commentsCount = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
     var formattedDescription = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
@@ -18806,18 +18809,28 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       return item.value.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var id, json, data;
+      var id, json, data, likeItems, likes;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            id = route.params.id;
+            // idを整数に変換
+            id = parseInt(route.params.id, 10);
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://localhost/api/item/".concat(id));
           case 3:
             json = _context.sent;
             data = json.data;
             item.value = data.data;
-          case 6:
+            _context.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://localhost/api/like");
+          case 8:
+            likeItems = _context.sent;
+            // アイテムIDのみを抽出
+            likes = likeItems.data.likes.map(function (like) {
+              return like.item_id;
+            }); // like配列にアイテムIDが含まれているかをチェック
+            item.value.likes = likes.includes(id);
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -18827,22 +18840,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     //マイリスト登録
     var toggleLike = /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var response;
+        var newLikeState, response;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
+              newLikeState = !item.value.likes;
+              _context2.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post('http://localhost/api/like', {
-                item_id: item.value.id
+                item_id: item.value.id,
+                like: newLikeState
               });
-            case 2:
+            case 3:
               response = _context2.sent;
-              if (response.data.message === 'Like Record') {
-                item.value.like = true;
-              } else if (response.data.message === 'Like Cancel') {
-                item.value.like = false;
+              if (response.data.message === 'Like Record' || response.data.message === 'Like Cancel') {
+                item.value.likes = newLikeState;
+                likesCount.value = response.data.count;
               }
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -18859,6 +18873,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
     var __returned__ = {
       item: item,
+      likesCount: likesCount,
+      commentsCount: commentsCount,
       router: router,
       route: route,
       formattedDescription: formattedDescription,
@@ -19030,9 +19046,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     var __expose = _ref.expose;
     __expose();
     var items = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var myList = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
+    var activeTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('all');
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var json, data;
+      var json, data, myListJson;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -19042,7 +19060,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             json = _context.sent;
             data = json.data;
             items.value = data.itemData;
-          case 5:
+
+            // マイリストのアイテムを取得
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/api/like');
+          case 7:
+            myListJson = _context.sent;
+            myList.value = myListJson.data.likes.map(function (like) {
+              return like.item;
+            }); // itemオブジェクトのリストに変換
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -19060,7 +19087,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     };
 
     //切り替えタブ
-    var activeTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('all');
     var changeTab = function changeTab(tab) {
       activeTab.value = tab;
     };
@@ -19068,17 +19094,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       if (activeTab.value === 'all') {
         return items.value;
       } else if (activeTab.value === 'myList') {
-        // Replace with logic to filter items based on user's list
-        return items.value.filter(function (item) {
-          return item.isInMyList;
-        });
+        return myList.value;
       }
     });
     var __returned__ = {
       items: items,
+      myList: myList,
       router: router,
-      goToDetail: goToDetail,
       activeTab: activeTab,
+      goToDetail: goToDetail,
       changeTab: changeTab,
       filteredItems: filteredItems,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
@@ -19341,55 +19365,68 @@ var _hoisted_4 = {
   "class": "item_name"
 };
 var _hoisted_5 = {
-  "class": "item_price"
+  "class": "item_brand"
 };
 var _hoisted_6 = {
-  "class": "button_icon"
+  "class": "item_price"
 };
 var _hoisted_7 = {
+  "class": "button_icon"
+};
+var _hoisted_8 = {
+  "class": "like_icon"
+};
+var _hoisted_9 = {
   key: 0,
   "class": "button_image",
   src: _img_star_fill_jpg__WEBPACK_IMPORTED_MODULE_1__["default"],
   alt: "Like Icon"
 };
-var _hoisted_8 = {
+var _hoisted_10 = {
   key: 1,
   "class": "button_image",
   src: _img_star_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
   alt: "Like Icon"
 };
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_11 = {
+  "class": "like_count"
+};
+var _hoisted_12 = {
+  "class": "comment_icon"
+};
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "comment_button"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "button_image",
   src: _img_chat_bubble_jpg__WEBPACK_IMPORTED_MODULE_3__["default"],
   alt: "Comment Icon"
 })], -1 /* HOISTED */);
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_14 = {
+  "class": "comment_count"
+};
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "purchase_button"
 }, "購入する", -1 /* HOISTED */);
-var _hoisted_11 = {
+var _hoisted_16 = {
   "class": "item_description"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "description_title"
 }, "商品説明", -1 /* HOISTED */);
-var _hoisted_13 = ["innerHTML"];
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"item_information\"><p class=\"information_title\">商品の情報</p><div class=\"item_category\"><p>カテゴリー</p><div class=\"category_tag\"></div></div><div class=\"item_condition\"><p>商品の状態</p><div class=\"condition_tag\"></div></div></div>", 1);
+var _hoisted_18 = ["innerHTML"];
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"item_information\"><p class=\"information_title\">商品の情報</p><div class=\"item_category\"><p>カテゴリー</p><div class=\"category_tag\"></div></div><div class=\"item_condition\"><p>商品の状態</p><div class=\"condition_tag\"></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "item_img",
     src: $setup.item.img_url,
     alt: "Image"
-  }, null, 8 /* PROPS */, _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 8 /* PROPS */, _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item.brand), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "like_button",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $setup.toggleLike($setup.item.id);
-    })
-  }, [$setup.item.like ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_7)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_8))]), _hoisted_9]), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: $setup.toggleLike
+  }, [$setup.item.likes ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_9)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_10))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.likesCount), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.commentsCount), 1 /* TEXT */)])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "description",
     innerHTML: $setup.formattedDescription
-  }, null, 8 /* PROPS */, _hoisted_13)]), _hoisted_14])])], 64 /* STABLE_FRAGMENT */);
+  }, null, 8 /* PROPS */, _hoisted_18)]), _hoisted_19])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -19482,7 +19519,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.changeTab('myList');
     })
-  }, "マイリスト ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.items, function (item) {
+  }, "マイリスト ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.filteredItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "item",
       key: item.id
@@ -21707,7 +21744,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: auto; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n.purchase_button{\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n}\n.description_title, .information_title{\n    font-size: x-large;\n    font-weight: bold;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: auto; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n}\n.like_icon,\n.comment_icon {\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n}\n.like_count,\n.comment_count{\n    font-size: 10px;\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n.purchase_button{\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n}\n.description_title, .information_title{\n    font-size: x-large;\n    font-weight: bold;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

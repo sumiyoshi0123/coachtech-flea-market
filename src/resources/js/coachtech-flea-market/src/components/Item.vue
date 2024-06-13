@@ -5,12 +5,18 @@ import { useRouter } from "vue-router";
 import Header from './Header.vue';
 
 const items = ref([]);
+const myList = ref([]);
 const router = useRouter();
+const activeTab = ref('all');
 
 onMounted(async () => {
     const json = await axios.get("http://localhost/api/item");
     const data = json.data;
     items.value = data.itemData;
+
+    // マイリストのアイテムを取得
+    const myListJson = await axios.get('http://localhost/api/like');
+    myList.value = myListJson.data.likes.map(like => like.item); // itemオブジェクトのリストに変換
 });
 
 //Detail.vueへ
@@ -19,8 +25,6 @@ const goToDetail = (itemId) => {
 };
 
 //切り替えタブ
-const activeTab = ref('all');
-
 const changeTab = (tab) => {
     activeTab.value = tab;
 };
@@ -29,8 +33,7 @@ const filteredItems = computed(() => {
     if (activeTab.value === 'all') {
         return items.value;
     } else if (activeTab.value === 'myList') {
-        // Replace with logic to filter items based on user's list
-        return items.value.filter(item => item.isInMyList);
+        return myList.value;
     }
 });
 </script>
@@ -45,7 +48,7 @@ const filteredItems = computed(() => {
             </div>
         </div>
         <div class="item-list">
-            <div class="item" v-for="item in items" :key="item.id">
+            <div class="item" v-for="item in filteredItems" :key="item.id">
                 <div @click="goToDetail(item.id)">
                     <img class=" item_image" :src="item.img_url" alt="Image" />
                 </div>
