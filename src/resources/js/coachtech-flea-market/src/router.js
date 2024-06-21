@@ -4,6 +4,8 @@ import Detail from './components/Detail.vue';
 import Header from './components/Header.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
+import Comment from './components/Comment.vue';
+import Purchase from './components/Purchase.vue';
 
 const routes = [
     {
@@ -30,6 +32,16 @@ const routes = [
         path: "/login",
         name: "login",
         component: Login,
+    },
+    {
+        path: "/comment/:id",
+        name: "comment",
+        component: Comment,
+    },
+    {
+        path: "/purchase/:id",
+        name: "purchase",
+        component: Purchase,
     },
 ]
 

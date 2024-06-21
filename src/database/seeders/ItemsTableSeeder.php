@@ -88,7 +88,7 @@ class ItemsTableSeeder extends Seeder
 
         Item::create([
             'user_id' => 1,
-            'name' => 'プレスレット',
+            'name' => 'ブレスレット',
             'brand' => 'ノーブランド',
             'price' => 5000,
             'img_url' => '/images/img/bracelet.jpg',

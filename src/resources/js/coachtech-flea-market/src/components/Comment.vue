@@ -1,9 +1,8 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, reactive, onMounted, computed } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 import Header from './Header.vue';
-import { nl2br } from '../utils.js';
 
 const item = ref({
     name: '',
@@ -14,16 +13,19 @@ const item = ref({
     likes: false // 初期状態としてお気に入りの状態を持つ
 });
 
+const comments = ref([]);
+const newComment = reactive({
+    user_icon: '',
+    user_name: '',
+    user_comment: ''
+});
+
+const user = ref(null); // ログインユーザー情報を保持するオブジェクト
+
 const likesCount = ref(0);
 const commentsCount = ref(0);
 const router = useRouter();
 const route = useRoute();
-
-const formattedDescription = computed(() => {
-    // 改行文字の置換処理
-    const description = item.value.description ? item.value.description.replace(/\\n/g, '\n') : '';
-    return description ? nl2br(description) : '';
-});
 
 // 価格をカンマ区切りで表示する計算されたプロパティ
 const formattedPrice = computed(() => {
@@ -40,7 +42,6 @@ onMounted(async () => {
     const data = json.data;
     item.value = data.data;
 
-    //マイリスト情報を取得
     const likeItems = await axios.get("http://localhost/api/like");
     // アイテムIDのみを抽出
     const likes = likeItems.data.likes.map(like => like.item_id);
@@ -51,9 +52,16 @@ onMounted(async () => {
     const likesResponse = await axios.get(`http://localhost/api/item/${id}/likes-count`);
     likesCount.value = likesResponse.data.likes_count;
 
-    // コメント件数を取得
+    // コメント情報を取得
     const commentsResponse = await axios.get(`http://localhost/api/comments/${id}`);
+    comments.value = commentsResponse.data.comments;
     commentsCount.value = commentsResponse.data.comments.length;
+
+    // ログインユーザー情報を取得
+    const userResponse = await axios.get("http://localhost/api/user");
+    if (userResponse.data) {
+        user.value = userResponse.data;
+    }
 });
 
 //マイリスト登録
@@ -73,15 +81,37 @@ const toggleLike = async () => {
     }
 }
 
-//コメントページへ
-const comment = () => {
-    router.push({ name: "comment", params: { id: item.value.id } });
-}
+// コメント登録
+const addComment = async () => {
+        const id = parseInt(route.params.id, 10);
 
-//購入ページへ
-const purchase = () => {
-    router.push({ name: "purchase", params: { id: item.value.id } });
-}
+        const response = await axios.post('http://localhost/api/comments', {
+            item_id: id,
+            comment: newComment.user_comment
+        });
+
+        //コメント送信後の処理
+        if (response.status === 201) {
+            // 新しいコメントをcommentsリストに追加
+            comments.value.push({
+                user_icon: user.value.icon,  // ユーザーアイコンを追加
+                user_name: user.value.name,  // ユーザー名を追加
+                comment: newComment.user_comment
+            });
+            commentsCount.value += 1; // コメント数を更新
+            newComment.user_comment = ''; // フィールドをクリアにする
+        }
+};
+
+// コメント削除
+const deleteComment = async (commentId) => {
+    const response = await axios.delete(`http://localhost/api/comments/${commentId}`);
+
+    if (response.status === 200) {
+        comments.value = comments.value.filter(comment => comment.id !== commentId);
+        commentsCount.value -= 1; // コメント数を更新
+    }
+};
 </script>
 
 <template>
@@ -101,33 +131,42 @@ const purchase = () => {
                     <span class="like_count">{{ likesCount }}</span>
                 </div>
                 <div class="comment_icon">
-                    <button class="comment_button" @click="comment">
+                    <button class="comment_button">
                         <img class="button_image" src="../img/chat_bubble.jpg" alt="Comment Icon">
                     </button>
                     <span class="comment_count">{{ commentsCount }}</span>
                 </div>
             </div>
-            <button class="purchase_button" @click="purchase">購入する</button>
-            <div class="item_description">
-                <p class="description_title">商品説明</p>
-                <div class="description" v-html="formattedDescription"></div>
+            <div class="comment_index">
+                <div class="users_comment" v-for="comment in comments" :key="comment.id">
+                    <div class="user_data">
+                        <div class="user_icon">
+                            <img :src="comment.user_icon" alt="User Icon" class="icon_image" />
+                        </div>
+                        <div class="user_name">{{ comment.user_name }}</div>
+                    </div>
+                    <div class="comment_body">
+                        <div class="user_comment">{{ comment.comment }}</div>
+                        <button class="delete_button" v-if="user && comment.user_id === user.id"
+                            @click="deleteComment(comment.id)">
+                            <img class="delete_icon" src="../img/multiply_circle.png">
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="item_information">
-                <p class="information_title">商品の情報</p>
-                <div class="item_category">
-                    <p>カテゴリー</p>
-                    <div class="category_tag"></div>
-                </div>
-                <div class="item_condition">
-                    <p>商品の状態</p>
-                    <div class="condition_tag"></div>
-                </div>
+            <div class="comment_form">
+                <div class="form_title">商品へのコメント</div>
+                <form @submit.prevent="addComment" class="form_contents">
+                    <textarea v-model="newComment.user_comment" type="text" class="form_text"></textarea>
+                    <button type="submit" class="comment_form-button">コメントを送信する</button>
+                </form>
             </div>
         </div>
     </main>
 </template>
 
 <style>
+/* item */
 .detail_index{
     display: flex;
     padding-top: 100px;
@@ -150,16 +189,18 @@ const purchase = () => {
     font-size: xx-large;
     font-weight: bold;
 }
-.item_brand {
+.item_brand{
     font-size: small;
 }
-.item_price {
+.item_price{
     margin-top: 10px;
 }
 
+/* like_button,comment_button */
 .button_icon {
     display: flex;
     gap: 10px; /* ボタン間のスペースを設定 */
+    margin-top: 10px;
 }
 .like_icon,
 .comment_icon {
@@ -183,7 +224,60 @@ const purchase = () => {
     width: 24px;
     height: 24px;
 }
-.purchase_button{
+
+/* comment */
+.comment_index{
+    padding-top: 50px;
+}
+.users_comment{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.user_data{
+    display: flex;
+}
+.icon_image {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%; /* 丸いアイコンにする */
+}
+.user_name {
+    font-weight: bold;
+}
+.comment_body{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc; /* ボーダー */
+    box-sizing: border-box;   /* ボーダーを含めたサイズ計算 */
+    background-color: rgb(233, 233, 233);
+}
+.delete_button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.delete_icon{
+    width: 20px;
+    height: 20px;
+}
+
+/* comment_form */
+.form_title{
+    padding-top: 30px;
+    font-weight: bold;
+}
+.form_contents{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form_text {
+    width: 200px;
+    height: 100px; /* テキストエリアの高さを調整 */
+    resize: none; /* ユーザーがサイズを変更できないようにする */
+}
+.comment_form-button {
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -191,11 +285,5 @@ const purchase = () => {
     border: none;
     width: 200px;
     height: 25px;
-    margin-top: 10px;
 }
-.description_title, .information_title{
-    font-size: x-large;
-    font-weight: bold;
-}
-
 </style>

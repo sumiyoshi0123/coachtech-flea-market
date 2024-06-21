@@ -38,16 +38,54 @@ const navigateToRegister = () => {
             </div>
             <div class="form_item">
                 <div class="email_form">
-                    <p>メールアドレス</p>
+                    <p class="form_label">メールアドレス</p>
                     <input type="text" class="item-email" v-model="email">
                 </div>
                 <div class="pass_form">
-                    <p>パスワード</p>
+                    <p class="form_label">パスワード</p>
                     <input type="text" class="item-pass" v-model="password">
                 </div>
-                <button class="from_item-button" @click="login()">ログイン</button>
+                <button class="from_item-button" @click="login()">ログインする</button>
                 <a class="link" @click="navigateToRegister">会員登録はこちら</a>
             </div>
         </div>
     </main>
 </template>
+
+<style>
+.form_item {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-title_item{
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+.form_label{
+    font-weight: bold;
+    text-align: start;
+    margin-bottom: 0;
+}
+.item-email,
+.item-pass{
+    width: 300px;
+    height: 25px;
+}
+.from_item-button{
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.670);
+    border: none;
+    width: 300px;
+    height: 30px;
+    margin-top: 35px;
+}
+.link{
+    color: rgb(16, 165, 215);
+    cursor: pointer;
+}
+</style>

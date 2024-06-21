@@ -85,4 +85,10 @@ class LikeController extends Controller
             return response()->json(['message' => 'Like Record']);
         }
     }
+
+    public function getLikesCount($id)
+    {
+        $likesCount = Like::where('item_id', $id)->count();
+        return response()->json(['likes_count' => $likesCount]);
+    }
 }

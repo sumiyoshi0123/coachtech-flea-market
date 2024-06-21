@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +37,15 @@ Route::post('/login', function (Request $request) {
 });
 
 Route::middleware((['auth:sanctum']))->group(function () {
+    Route::get('/comment', [CommentController::class, 'index']);
     Route::post('/like', [LikeController::class, 'toggleLike']);
+    Route::get('item/{id}/likes-count', [LikeController::class, 'getLikesCount']);
     Route::get('/like', [LikeController::class, 'index']);
+    Route::get('/comments/{id}', [CommentController::class, 'index']);
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
+    Route::get('/purchase/{id}', [PurchaseController::class, 'index']);
+    Route::post('/purchase', [PurchaseController::class, 'store']);
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
