@@ -4,6 +4,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -44,8 +46,12 @@ Route::middleware((['auth:sanctum']))->group(function () {
     Route::get('/comments/{id}', [CommentController::class, 'index']);
     Route::post('/comments', [CommentController::class, 'store']);
     Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
-    Route::get('/purchase/{id}', [PurchaseController::class, 'index']);
+    Route::get('/purchase', [PurchaseController::class, 'index']);
     Route::post('/purchase', [PurchaseController::class, 'store']);
+    Route::get('/payments', [PaymentController::class, 'index']);
+    Route::get('/my_page', [UserDataController::class, 'index']);
+    Route::get('/my_page/me', [UserDataController::class, 'show']);
+    Route::post('/my_page', [UserDataController::class, 'updateAddress']);
 });
 
 Route::post('/register', [RegisterController::class, 'store']);

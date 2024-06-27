@@ -31,8 +31,11 @@ const logout = async () => {
 
 //マイページ画面へ
 const myPage = () => {
-    router.push({ name: "my_page" });
+    router.push({ name: 'my_page' });
 }
+
+//出品ページへ
+
 
 const searchKeyword = ref('');
 

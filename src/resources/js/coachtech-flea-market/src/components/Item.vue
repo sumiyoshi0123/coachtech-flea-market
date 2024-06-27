@@ -55,7 +55,6 @@ const filteredItems = computed(() => {
             </div>
         </div>
     </main>
-
 </template>
 
 <style>
@@ -91,5 +90,4 @@ const filteredItems = computed(() => {
     height: auto; /* アスペクト比を維持 */
     object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */
 }
-
 </style>

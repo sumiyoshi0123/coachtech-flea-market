@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLikesTable extends Migration
+class AddIsPurchasedToItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('item_id');
-            $table->timestamps();
-
-
+        Schema::table('items', function (Blueprint $table) {
+            $table->boolean('is_purchased')->default(false); // フラグを追加
         });
     }
 
@@ -30,6 +25,8 @@ class CreateLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropColumn('is_purchased');
+        });
     }
 }

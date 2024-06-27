@@ -6,6 +6,8 @@ import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Comment from './components/Comment.vue';
 import Purchase from './components/Purchase.vue';
+import AddressChangeForm from './components/AddressChangeForm.vue';
+import My_page from './components/My_page.vue';
 
 const routes = [
     {
@@ -42,6 +44,16 @@ const routes = [
         path: "/purchase/:id",
         name: "purchase",
         component: Purchase,
+    },
+    {
+        path: '/address-change',
+        name: 'addressChangeForm',
+        component: AddressChangeForm,
+    },
+    {
+        path: '/my_page',
+        name: 'my_page',
+        component: My_page,
     },
 ]
 

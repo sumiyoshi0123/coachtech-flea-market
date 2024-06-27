@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ItemController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items =
-        Item::where('is_purchased', false)->get();
-
-        return response()->json([
-            'itemData' => $items,
-        ], 200);
+        $payments = Payment::all();
+        return response()->json($payments);
     }
 
     /**
@@ -37,26 +32,22 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Payment $payment)
     {
-        $item = Item::find($id);
-
-        return response()->json([
-            'data' => $item
-        ], 200);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -64,10 +55,10 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Payment $payment)
     {
         //
     }

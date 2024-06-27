@@ -19,4 +19,12 @@ class Comment extends Model
     {
         return $this->belongsTo(item::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function userData()
+    {
+        return $this->belongsTo(UserData::class, 'user_id', 'user_id');
+    }
 }

@@ -57,7 +57,7 @@ onMounted(async () => {
     comments.value = commentsResponse.data.comments;
     commentsCount.value = commentsResponse.data.comments.length;
 
-    // ログインユーザー情報を取得
+    // ログインユーザーを取得
     const userResponse = await axios.get("http://localhost/api/user");
     if (userResponse.data) {
         user.value = userResponse.data;
@@ -141,9 +141,9 @@ const deleteComment = async (commentId) => {
                 <div class="users_comment" v-for="comment in comments" :key="comment.id">
                     <div class="user_data">
                         <div class="user_icon">
-                            <img :src="comment.user_icon" alt="User Icon" class="icon_image" />
+                            <img :src="comment.user_data.icon" alt="User Icon" class="icon_image" />
                         </div>
-                        <div class="user_name">{{ comment.user_name }}</div>
+                        <div class="user_name">{{ comment.user_data.name }}</div>
                     </div>
                     <div class="comment_body">
                         <div class="user_comment">{{ comment.comment }}</div>
@@ -155,7 +155,7 @@ const deleteComment = async (commentId) => {
                 </div>
             </div>
             <div class="comment_form">
-                <div class="form_title">商品へのコメント</div>
+                <div class="comment_form-title">商品へのコメント</div>
                 <form @submit.prevent="addComment" class="form_contents">
                     <textarea v-model="newComment.user_comment" type="text" class="form_text"></textarea>
                     <button type="submit" class="comment_form-button">コメントを送信する</button>
@@ -263,7 +263,7 @@ const deleteComment = async (commentId) => {
 }
 
 /* comment_form */
-.form_title{
+.comment_form-title{
     padding-top: 30px;
     font-weight: bold;
 }

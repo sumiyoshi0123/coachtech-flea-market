@@ -13,9 +13,10 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($itemId)
     {
-        $comments = Comment::where('item_id', $id)->get();
+        // 特定の商品に対するコメントと関連するユーザー情報を取得
+        $comments = Comment::with('userData')->where('item_id', $itemId)->get();
 
         return response()->json([
             'comments' => $comments
@@ -33,14 +34,15 @@ class CommentController extends Controller
     {
         $user = Auth::user();
 
-        $comment = [
-            'item_id' => $request->item_id,
+        $comment = Comment::create([
             'user_id' => $user->id,
+            'item_id' => $request->item_id,
             'comment' => $request->comment,
-        ];
-        Comment::create($comment);
+        ]);
+
         return response()->json([
-            "message" => "Successfully"
+            'message' => 'Comment added successfully',
+            'comment' => $comment->load('user') // 新しいコメントとユーザー情報を含める
         ], 201);
     }
 

@@ -18756,6 +18756,94 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  __name: 'AddressChangeForm',
+  setup: function setup(__props, _ref) {
+    var __expose = _ref.expose;
+    __expose();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
+    var address = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+      post_number: '',
+      address: '',
+      building_name: ''
+    });
+    var updateAddress = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('http://localhost/api/my_page', address.value);
+            case 3:
+              response = _context.sent;
+              if (response.status === 200) {
+                alert('住所が更新されました。');
+                router.push({
+                  name: 'purchase'
+                }); // 注文ページにリダイレクト
+              }
+              _context.next = 11;
+              break;
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.error('住所の更新に失敗しました:', _context.t0);
+              alert('住所の更新に失敗しました。');
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 7]]);
+      }));
+      return function updateAddress() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+    var __returned__ = {
+      router: router,
+      address: address,
+      updateAddress: updateAddress,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      get axios() {
+        return axios__WEBPACK_IMPORTED_MODULE_2__["default"];
+      },
+      get useRouter() {
+        return vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter;
+      }
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=script&setup=true&lang=js":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=script&setup=true&lang=js ***!
@@ -18849,7 +18937,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             comments.value = commentsResponse.data.comments;
             commentsCount.value = commentsResponse.data.comments.length;
 
-            // ログインユーザー情報を取得
+            // ログインユーザーを取得
             _context.next = 22;
             return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost/api/user");
           case 22:
@@ -19266,9 +19354,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     //マイページ画面へ
     var myPage = function myPage() {
       router.push({
-        name: "my_page"
+        name: 'my_page'
       });
     };
+
+    //出品ページへ
+
     var searchKeyword = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     var __returned__ = {
       router: router,
@@ -19504,6 +19595,114 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/coachtech-flea-market/src/components/Header.vue");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  __name: 'My_page',
+  setup: function setup(__props, _ref) {
+    var __expose = _ref.expose;
+    __expose();
+    var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var sellItems = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var purchaseItems = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
+    var activeTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('sell');
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var userJson, userData, json, purchaseData;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost/api/my_page/me");
+          case 2:
+            userJson = _context.sent;
+            userData = userJson.data.data;
+            user.value = userData;
+
+            //出品した商品を取得
+            // const sellItemJson = await axios.get("http://localhost/api/sell");
+            // const sellData = sellItemJson.data;
+            // sellItems.value = sellData.itemData;
+
+            // 購入した商品を取得
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/api/purchase');
+          case 7:
+            json = _context.sent;
+            purchaseData = json.data.purchases;
+            purchaseItems.value = purchaseData;
+            console.log(purchaseData);
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    })));
+
+    //切り替えタブ
+    var changeTab = function changeTab(tab) {
+      activeTab.value = tab;
+    };
+    var filteredItems = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      if (activeTab.value === 'sell') {
+        return sellItems.value;
+      } else if (activeTab.value === 'purchase') {
+        return purchaseItems.value;
+      }
+    });
+
+    //プロフィール編集画面へ
+
+    var __returned__ = {
+      user: user,
+      sellItems: sellItems,
+      purchaseItems: purchaseItems,
+      router: router,
+      activeTab: activeTab,
+      changeTab: changeTab,
+      filteredItems: filteredItems,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
+      computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
+      get axios() {
+        return axios__WEBPACK_IMPORTED_MODULE_3__["default"];
+      },
+      get useRouter() {
+        return vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter;
+      },
+      Header: _Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=script&setup=true&lang=js":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=script&setup=true&lang=js ***!
@@ -19532,8 +19731,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose;
     __expose();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute)();
     var item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+      id: '',
       name: '',
       price: 0,
       img_url: ''
@@ -19542,11 +19743,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     // 価格をカンマ区切りで表示する計算されたプロパティ
     var formattedPrice = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       var price = item.value.price;
-      if (typeof price !== 'number') return '';
+      if (!Number.isInteger(price)) return '';
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var id, json, data;
+      var id, json, data, paymentResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -19557,16 +19758,96 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             json = _context.sent;
             data = json.data;
             item.value = data.data;
-          case 6:
+
+            //支払方法の取得
+            _context.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/api/payments');
+          case 8:
+            paymentResponse = _context.sent;
+            paymentMethods.value = paymentResponse.data.map(function (payment) {
+              return {
+                id: payment.id,
+                method: payment.payment
+              };
+            });
+          case 10:
           case "end":
             return _context.stop();
         }
       }, _callee);
     })));
+
+    //支払方法の選択
+    var paymentMethods = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var selectedPaymentMethod = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var showPaymentModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var selectPaymentMethod = function selectPaymentMethod(method) {
+      selectedPaymentMethod.value = method;
+      showPaymentModal.value = false;
+    };
+
+    //住所変更ページへ
+    var changeAddress = function changeAddress() {
+      router.push({
+        name: 'AddressChangeForm'
+      });
+    };
+
+    //購入機能
+    var purchaseItem = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              if (selectedPaymentMethod.value) {
+                _context2.next = 3;
+                break;
+              }
+              alert('支払い方法を選択してください');
+              return _context2.abrupt("return");
+            case 3:
+              _context2.prev = 3;
+              _context2.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('http://localhost/api/purchase', {
+                item_id: item.value.id,
+                payment_id: selectedPaymentMethod.value.id
+              });
+            case 6:
+              response = _context2.sent;
+              if (response.data.success) {
+                alert('購入が完了しました');
+              } else {
+                alert('購入に失敗しました');
+              }
+              _context2.next = 14;
+              break;
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](3);
+              console.error(_context2.t0);
+              alert('購入処理中にエラーが発生しました');
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[3, 10]]);
+      }));
+      return function purchaseItem() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
     var __returned__ = {
+      router: router,
       route: route,
       item: item,
       formattedPrice: formattedPrice,
+      paymentMethods: paymentMethods,
+      selectedPaymentMethod: selectedPaymentMethod,
+      showPaymentModal: showPaymentModal,
+      selectPaymentMethod: selectPaymentMethod,
+      changeAddress: changeAddress,
+      purchaseItem: purchaseItem,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
@@ -19705,6 +19986,81 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6 ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "address-change"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "form_title"
+}, "住所の変更", -1 /* HOISTED */);
+var _hoisted_3 = {
+  "class": "form-group"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form_content",
+  "for": "post_number"
+}, "郵便番号", -1 /* HOISTED */);
+var _hoisted_5 = {
+  "class": "form-group"
+};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form_content",
+  "for": "address"
+}, "住所", -1 /* HOISTED */);
+var _hoisted_7 = {
+  "class": "form-group"
+};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form_content",
+  "for": " building_name"
+}, "建物名", -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "update_button",
+  type: "submit"
+}, "更新する", -1 /* HOISTED */);
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.updateAddress, ["prevent"])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "form_input",
+    type: "text",
+    id: "post_number",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.address.post_number = $event;
+    }),
+    required: ""
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.address.post_number]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "form_input",
+    type: "text",
+    id: "address",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $setup.address.address = $event;
+    }),
+    required: ""
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.address.address]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "form_input",
+    type: "text",
+    id: "building_name",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $setup.address.building_name = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.address.building_name]])]), _hoisted_9], 32 /* NEED_HYDRATION */)]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=template&id=25d13214":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=template&id=25d13214 ***!
@@ -19805,7 +20161,7 @@ var _hoisted_25 = {
   "class": "comment_form"
 };
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form_title"
+  "class": "comment_form-title"
 }, "商品へのコメント", -1 /* HOISTED */);
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -19824,10 +20180,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "users_comment",
       key: comment.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: comment.user_icon,
+      src: comment.user_data.icon,
       alt: "User Icon",
       "class": "icon_image"
-    }, null, 8 /* PROPS */, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.user_name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.comment), 1 /* TEXT */), $setup.user && comment.user_id === $setup.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    }, null, 8 /* PROPS */, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.user_data.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(comment.comment), 1 /* TEXT */), $setup.user && comment.user_id === $setup.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       key: 0,
       "class": "delete_button",
       onClick: function onClick($event) {
@@ -20122,6 +20478,83 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912 ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "center-container"
+};
+var _hoisted_2 = {
+  "class": "user_data"
+};
+var _hoisted_3 = {
+  "class": "icon"
+};
+var _hoisted_4 = ["src"];
+var _hoisted_5 = {
+  "class": "name"
+};
+var _hoisted_6 = {
+  "class": "edit"
+};
+var _hoisted_7 = {
+  "class": "tab"
+};
+var _hoisted_8 = {
+  "class": "item-list"
+};
+var _hoisted_9 = ["onClick"];
+var _hoisted_10 = ["src"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $setup.user.icon,
+    alt: "User Icon",
+    "class": "icon_image"
+  }, null, 8 /* PROPS */, _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "edit_button",
+    onClick: _cache[0] || (_cache[0] = function () {})
+  }, "プロフィールを編集")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["tab-item", {
+      'active': $setup.activeTab === 'sell'
+    }]),
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.changeTab('sell');
+    })
+  }, "出品した商品 ", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["tab-item", {
+      'active': $setup.activeTab === 'purchase'
+    }]),
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.changeTab('purchase');
+    })
+  }, "購入した商品 ", 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.filteredItems, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "item",
+      key: item.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      onClick: function onClick($event) {
+        return _ctx.goToDetail(item.id);
+      }
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "item_image",
+      src: item.item.img_url,
+      alt: "Image"
+    }, null, 8 /* PROPS */, _hoisted_10)], 8 /* PROPS */, _hoisted_9)]);
+  }), 128 /* KEYED_FRAGMENT */))])])], 64 /* STABLE_FRAGMENT */);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=template&id=0cc4ebc8":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=template&id=0cc4ebc8 ***!
@@ -20136,24 +20569,85 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "detail_index"
+  "class": "purchase_item"
 };
-var _hoisted_2 = ["src"];
+var _hoisted_2 = {
+  "class": "purchase_form"
+};
 var _hoisted_3 = {
+  "class": "data"
+};
+var _hoisted_4 = ["src"];
+var _hoisted_5 = {
   "class": "item_data"
 };
-var _hoisted_4 = {
+var _hoisted_6 = {
   "class": "item_name"
 };
-var _hoisted_5 = {
+var _hoisted_7 = {
   "class": "item_price"
 };
+var _hoisted_8 = {
+  "class": "payment"
+};
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "payment_title"
+}, "支払い方法", -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "destination_title"
+}, "配送先", -1 /* HOISTED */);
+var _hoisted_11 = {
+  "class": "purchase_data"
+};
+var _hoisted_12 = {
+  "class": "data_items"
+};
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "商品代金", -1 /* HOISTED */);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "支払い代金", -1 /* HOISTED */);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "支払い方法", -1 /* HOISTED */);
+var _hoisted_16 = {
+  key: 0,
+  "class": "modal"
+};
+var _hoisted_17 = {
+  "class": "modal-content"
+};
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "支払い方法を選択してください", -1 /* HOISTED */);
+var _hoisted_19 = {
+  "class": "payment_list"
+};
+var _hoisted_20 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "item_img",
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    "class": "image",
     src: $setup.item.img_url,
     alt: "Image"
-  }, null, 8 /* PROPS */, _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */)])])], 64 /* STABLE_FRAGMENT */);
+  }, null, 8 /* PROPS */, _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.item.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "payment_select",
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $setup.showPaymentModal = true;
+    })
+  }, "変更する")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "destination"
+  }, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "destination_select",
+    onClick: $setup.changeAddress
+  }, "変更する")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, "¥" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedPrice), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPaymentMethod.method), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "purchase_data-button",
+    onClick: $setup.purchaseItem
+  }, "購入する")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 支払い方法モーダル "), $setup.showPaymentModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.paymentMethods, function (method) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: method,
+      onClick: function onClick($event) {
+        return $setup.selectPaymentMethod(method);
+      },
+      "class": "list_item"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(method.method), 9 /* TEXT, PROPS */, _hoisted_20);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.showPaymentModal = false;
+    })
+  }, "閉じる")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20237,7 +20731,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _components_Item_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Item.vue */ "./resources/js/coachtech-flea-market/src/components/Item.vue");
 /* harmony import */ var _components_Detail_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Detail.vue */ "./resources/js/coachtech-flea-market/src/components/Detail.vue");
 /* harmony import */ var _components_Header_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Header.vue */ "./resources/js/coachtech-flea-market/src/components/Header.vue");
@@ -20245,6 +20739,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/coachtech-flea-market/src/components/Register.vue");
 /* harmony import */ var _components_Comment_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Comment.vue */ "./resources/js/coachtech-flea-market/src/components/Comment.vue");
 /* harmony import */ var _components_Purchase_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Purchase.vue */ "./resources/js/coachtech-flea-market/src/components/Purchase.vue");
+/* harmony import */ var _components_AddressChangeForm_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AddressChangeForm.vue */ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue");
+/* harmony import */ var _components_My_page_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/My_page.vue */ "./resources/js/coachtech-flea-market/src/components/My_page.vue");
+
+
 
 
 
@@ -20281,9 +20779,17 @@ var routes = [{
   path: "/purchase/:id",
   name: "purchase",
   component: _components_Purchase_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+}, {
+  path: '/address-change',
+  name: 'addressChangeForm',
+  component: _components_AddressChangeForm_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+}, {
+  path: '/my_page',
+  name: 'my_page',
+  component: _components_My_page_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createWebHashHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createWebHashHistory)(),
   routes: routes
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -22295,6 +22801,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\n  /* font-family: Avenir, He
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.address-change {\n    max-width: 400px;\n    margin: 0 auto;\n    padding: 20px;\n}\n.form_title {\n    text-align: center;\n}\n.form-group {\n    margin-bottom: 20px;\n}\n.form_content {\n    font-weight: bold;\n    display: block;\n    margin-bottom: 5px;\n}\n.form_input {\n    width: 100%;\n    padding: 8px;\n    box-sizing: border-box;\n}\n.update_button {\n    width: 100%;\n    padding: 10px;\n    background-color: rgba(255, 0, 0, 0.670);\n    color: #fff;\n    border: none;\n    cursor: pointer;\n    margin-top: 30px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=style&index=0&id=25d13214&lang=css":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=style&index=0&id=25d13214&lang=css ***!
@@ -22312,7 +22842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* item */\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: 380px; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.item_brand{\n    font-size: small;\n}\n.item_price{\n    margin-top: 10px;\n}\n\n/* like_button,comment_button */\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n    margin-top: 10px;\n}\n.like_icon,\n.comment_icon {\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n}\n.like_count,\n.comment_count{\n    font-size: 10px;\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n\n/* comment */\n.comment_index{\n    padding-top: 50px;\n}\n.users_comment{\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 15px;\n}\n.user_data{\n    display: flex;\n}\n.icon_image {\n    width: 24px;\n    height: 24px;\n    border-radius: 50%; /* 丸いアイコンにする */\n}\n.user_name {\n    font-weight: bold;\n}\n.comment_body{\n    display: flex;\n    justify-content: space-between;\n    border: 1px solid #ccc; /* ボーダー */\n    box-sizing: border-box;   /* ボーダーを含めたサイズ計算 */\n    background-color: rgb(233, 233, 233);\n}\n.delete_button{\n    border: none;\n    background: none;\n    cursor: pointer;\n}\n.delete_icon{\n    width: 20px;\n    height: 20px;\n}\n\n/* comment_form */\n.form_title{\n    padding-top: 30px;\n    font-weight: bold;\n}\n.form_contents{\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n.form_text {\n    width: 200px;\n    height: 100px; /* テキストエリアの高さを調整 */\n    resize: none; /* ユーザーがサイズを変更できないようにする */\n}\n.comment_form-button {\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* item */\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: 380px; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.item_brand{\n    font-size: small;\n}\n.item_price{\n    margin-top: 10px;\n}\n\n/* like_button,comment_button */\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n    margin-top: 10px;\n}\n.like_icon,\n.comment_icon {\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n}\n.like_count,\n.comment_count{\n    font-size: 10px;\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n\n/* comment */\n.comment_index{\n    padding-top: 50px;\n}\n.users_comment{\n    display: flex;\n    flex-direction: column;\n    margin-bottom: 15px;\n}\n.user_data{\n    display: flex;\n}\n.icon_image {\n    width: 24px;\n    height: 24px;\n    border-radius: 50%; /* 丸いアイコンにする */\n}\n.user_name {\n    font-weight: bold;\n}\n.comment_body{\n    display: flex;\n    justify-content: space-between;\n    border: 1px solid #ccc; /* ボーダー */\n    box-sizing: border-box;   /* ボーダーを含めたサイズ計算 */\n    background-color: rgb(233, 233, 233);\n}\n.delete_button{\n    border: none;\n    background: none;\n    cursor: pointer;\n}\n.delete_icon{\n    width: 20px;\n    height: 20px;\n}\n\n/* comment_form */\n.comment_form-title{\n    padding-top: 30px;\n    font-weight: bold;\n}\n.form_contents{\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n}\n.form_text {\n    width: 200px;\n    height: 100px; /* テキストエリアの高さを調整 */\n    resize: none; /* ユーザーがサイズを変更できないようにする */\n}\n.comment_form-button {\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22384,7 +22914,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tab {\n    padding-top: 30px;\n    padding-left: 100px;\n    margin-bottom: 30px;\n    border-bottom: 2px solid #ccc;\n}\n.tab-item {\n    display: inline-block;\n    padding: 10px 30px;\n    cursor: pointer;\n}\n.tab-item.active {\n    color: red;\n    font-weight: bold;\n}\n.item-list {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr); /* 5列に分ける */\n    gap: 60px; /* アイテム間のスペース */\n    margin: 60px;\n}\n.item {\n    border: 1px solid #ccc; /* ボーダー */\n    box-sizing: border-box; /* ボーダーを含めたサイズ計算 */\n    cursor: pointer; /* マウスカーソルをポインターに変更 */\n    margin-top: 20px;\n}\n.item_image {\n    width: 100%;\n    height: auto; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tab {\n    padding-top: 30px;\n    padding-left: 100px;\n    margin-bottom: 30px;\n    border-bottom: 2px solid #ccc;\n}\n.tab-item {\n    display: inline-block;\n    padding: 10px 30px;\n    cursor: pointer;\n}\n.tab-item.active {\n    color: red;\n    font-weight: bold;\n}\n.item-list {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr); /* 5列に分ける */\n    gap: 60px; /* アイテム間のスペース */\n    margin: 60px;\n}\n.item {\n    border: 1px solid #ccc; /* ボーダー */\n    box-sizing: border-box; /* ボーダーを含めたサイズ計算 */\n    cursor: pointer; /* マウスカーソルをポインターに変更 */\n    margin-top: 20px;\n}\n.item_image {\n    width: 100%;\n    height: auto; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22415,6 +22945,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.form_item {\n    text-align: center
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.center-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 25vh;\n}\n.user_data{\n    text-align: center; /* 中央寄せ */\n    display: flex;\n    align-items: center;\n}\n.icon{\n    width: 50px;\n    height: 50px;\n    padding-right: 35px;\n}\n.name{\n    font-weight: bold;\n    font-size: x-large;\n}\n.edit {\n    display: flex;\n    justify-content: flex-end;\n    width: 100%;\n}\n.edit_button{\n    background-color: white;\n    color: red;\n    border: solid 1px red;\n    border-radius: 4px;\n}\n.tab {\n    padding-top: 30px;\n    padding-left: 100px;\n    margin-bottom: 30px;\n    border-bottom: 2px solid #ccc;\n}\n.tab-item {\n    display: inline-block;\n    padding: 10px 30px;\n    cursor: pointer;\n}\n.tab-item.active {\n    color: red;\n    font-weight: bold;\n}\n.item-list {\n    display: grid;\n    grid-template-columns: repeat(5, 1fr);\n    /* 5列に分ける */\n    gap: 60px;\n    /* アイテム間のスペース */\n    margin: 60px;\n}\n.item {\n    border: 1px solid #ccc;\n    /* ボーダー */\n    box-sizing: border-box;\n    /* ボーダーを含めたサイズ計算 */\n    cursor: pointer;\n    /* マウスカーソルをポインターに変更 */\n    margin-top: 20px;\n}\n.item_image {\n    width: 100%;\n    height: auto;\n    /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover;\n    /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=style&index=0&id=0cc4ebc8&lang=css":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=style&index=0&id=0cc4ebc8&lang=css ***!
@@ -22432,7 +22986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.detail_index {\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img {\n    width: 25%;\n    height: 380px;\n    /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover;\n    /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.purchase_item {\n    display: flex;\n    justify-content: center;\n}\n.purchase_form {\n    display: flex;\n    flex-direction: column;\n    padding-top: 100px;\n}\n.data {\n    display: flex;\n}\n.image {\n    width: 110px;\n    height: 160px;\n    padding-left: 20px;\n}\n.item_data {\n    display: flex;\n    flex-direction: column;\n    padding-top: 30px;\n    padding-left: 60px;\n    margin-right: 100px;\n}\n.payment,\n.destination {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 90px;\n}\n.payment_title,\n.destination_title{\n    font-weight: bold;\n}\n.payment_select,\n.destination_select{\n    border: none;\n    cursor: pointer;\n    color: rgb(16, 165, 215);\n    background-color: white;\n}\n.purchase_data{\n    display: flex;\n    flex-direction: column;\n    padding-top: 100px;\n    padding-left: 150px;\n}\n.data_items{\n    border: solid 1px black;\n    height: 300px;\n    width: 350px;\n}\n.purchase_data-button{\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 350px;\n    height: 35px;\n    margin-top: 60px;\n}\n.modal {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n.modal-content {\n    background-color: white;\n    padding: 20px;\n    border-radius: 5px;\n    text-align: center;\n    cursor: pointer;\n}\n.payment_list{\n    list-style-type: none;\n    padding-left: 0;\n}\n.list_item{\n    margin-bottom: 10px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22754,6 +23308,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_style_index_0_id_76632ac6_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_style_index_0_id_76632ac6_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_style_index_0_id_76632ac6_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=style&index=0&id=25d13214&lang=css":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Comment.vue?vue&type=style&index=0&id=25d13214&lang=css ***!
@@ -22901,6 +23485,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_style_index_0_id_2ac5bd44_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_style_index_0_id_85b45912_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./My_page.vue?vue&type=style&index=0&id=85b45912&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_style_index_0_id_85b45912_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_style_index_0_id_85b45912_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -23296,6 +23910,37 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AddressChangeForm_vue_vue_type_template_id_76632ac6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressChangeForm.vue?vue&type=template&id=76632ac6 */ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6");
+/* harmony import */ var _AddressChangeForm_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressChangeForm.vue?vue&type=script&setup=true&lang=js */ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _AddressChangeForm_vue_vue_type_style_index_0_id_76632ac6_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css */ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+
+
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_AddressChangeForm_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_AddressChangeForm_vue_vue_type_template_id_76632ac6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/coachtech-flea-market/src/components/Comment.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/coachtech-flea-market/src/components/Comment.vue ***!
@@ -23451,6 +24096,37 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/coachtech-flea-market/src/components/My_page.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/My_page.vue ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _My_page_vue_vue_type_template_id_85b45912__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./My_page.vue?vue&type=template&id=85b45912 */ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912");
+/* harmony import */ var _My_page_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./My_page.vue?vue&type=script&setup=true&lang=js */ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _My_page_vue_vue_type_style_index_0_id_85b45912_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./My_page.vue?vue&type=style&index=0&id=85b45912&lang=css */ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+
+
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_My_page_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_My_page_vue_vue_type_template_id_85b45912__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/coachtech-flea-market/src/components/My_page.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/coachtech-flea-market/src/components/Purchase.vue":
 /*!************************************************************************!*\
   !*** ./resources/js/coachtech-flea-market/src/components/Purchase.vue ***!
@@ -23525,6 +24201,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./App.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/App.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js ***!
+  \********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddressChangeForm.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=script&setup=true&lang=js");
  
 
 /***/ }),
@@ -23609,6 +24301,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./My_page.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=script&setup=true&lang=js":
 /*!***********************************************************************************************************!*\
   !*** ./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=script&setup=true&lang=js ***!
@@ -23653,6 +24361,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_template_id_6b4c24a3__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_template_id_6b4c24a3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./App.vue?vue&type=template&id=6b4c24a3 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/App.vue?vue&type=template&id=6b4c24a3");
+
+
+/***/ }),
+
+/***/ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6 ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_template_id_76632ac6__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_template_id_76632ac6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddressChangeForm.vue?vue&type=template&id=76632ac6 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=template&id=76632ac6");
 
 
 /***/ }),
@@ -23737,6 +24461,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912 ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_template_id_85b45912__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_template_id_85b45912__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./My_page.vue?vue&type=template&id=85b45912 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=template&id=85b45912");
+
+
+/***/ }),
+
 /***/ "./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=template&id=0cc4ebc8":
 /*!******************************************************************************************************!*\
   !*** ./resources/js/coachtech-flea-market/src/components/Purchase.vue?vue&type=template&id=0cc4ebc8 ***!
@@ -23778,6 +24518,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_style_index_0_id_6b4c24a3_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./App.vue?vue&type=style&index=0&id=6b4c24a3&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/App.vue?vue&type=style&index=0&id=6b4c24a3&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AddressChangeForm_vue_vue_type_style_index_0_id_76632ac6_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/AddressChangeForm.vue?vue&type=style&index=0&id=76632ac6&lang=css");
 
 
 /***/ }),
@@ -23843,6 +24596,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_style_index_0_id_2ac5bd44_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=style&index=0&id=2ac5bd44&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/Login.vue?vue&type=style&index=0&id=2ac5bd44&lang=css");
+
+
+/***/ }),
+
+/***/ "./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_My_page_vue_vue_type_style_index_0_id_85b45912_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./My_page.vue?vue&type=style&index=0&id=85b45912&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/coachtech-flea-market/src/components/My_page.vue?vue&type=style&index=0&id=85b45912&lang=css");
 
 
 /***/ }),
