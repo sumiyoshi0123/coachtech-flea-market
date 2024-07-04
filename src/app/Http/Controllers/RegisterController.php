@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +28,23 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $user = [
+        $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password)
-        ];
-        User::create($user);
-        return response()->json([
-            "message" => "Successfully registered" //登録完了
-        ], 201);
+        ]);
+
+        // ユーザー登録時にUserDataをnullで作成
+        UserData::create([
+            'user_id' => $user->id,
+            'name' => null,
+            'post_number' => null,
+            'address' => null,
+            'building_name' => null,
+            'icon' => null,
+        ]);
+
+        return response()->json(['message' => 'User registered successfully'], 201);
+
     }
 
     /**

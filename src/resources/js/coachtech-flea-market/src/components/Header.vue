@@ -35,7 +35,9 @@ const myPage = () => {
 }
 
 //出品ページへ
-
+const sell = () => {
+    router.push({ name: "sell" });
+}
 
 const searchKeyword = ref('');
 
@@ -49,7 +51,7 @@ const searchKeyword = ref('');
         <button class="register_button" v-if="!isLoggedIn" @click="register">会員登録</button>
         <button class="logout_button" v-if="isLoggedIn" @click="logout">ログアウト</button>
         <button class="myPage_button" v-if="isLoggedIn" @click="myPage">マイページ</button>
-        <button class="sell_button">出品</button>
+        <button class="sell_button" @click="sell">出品</button>
     </div>
 </template>
 

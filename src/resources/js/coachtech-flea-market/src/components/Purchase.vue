@@ -47,7 +47,7 @@ const selectPaymentMethod = (method) => {
 
 //住所変更ページへ
 const changeAddress = () => {
-    router.push({ name: 'AddressChangeForm' });
+    router.push({ name: 'addressChangeForm' });
 };
 
 //購入機能

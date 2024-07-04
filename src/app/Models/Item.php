@@ -14,7 +14,9 @@ class Item extends Model
         'brand',
         'price',
         'img_url',
-        'description'
+        'description',
+        'category_id',
+        'condition_id'
     ];
 
     //リレーション
@@ -29,5 +31,13 @@ class Item extends Model
     public function purchase()
     {
         return $this->hasOne(Purchase::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
     }
 }

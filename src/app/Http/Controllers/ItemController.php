@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -31,7 +32,30 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        // ファイルアップロード
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $request['img_url'] = Storage::url($path);
+        }
+
+        // 商品を作成
+        $item = Item::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'price' => $request->price,
+            'img_url' => $request->img_url,
+            'description' => $request->description,
+            'category_id' => $request['category_id'],
+            'condition_id' => $request['condition_id'],
+        ]);
+
+        return response()->json([
+            'message' => 'Item successfully created',
+            'data' => $item
+        ], 201);
     }
 
     /**

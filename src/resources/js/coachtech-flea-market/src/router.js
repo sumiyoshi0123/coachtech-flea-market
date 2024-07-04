@@ -8,6 +8,8 @@ import Comment from './components/Comment.vue';
 import Purchase from './components/Purchase.vue';
 import AddressChangeForm from './components/AddressChangeForm.vue';
 import My_page from './components/My_page.vue';
+import Sell from './components/Sell.vue';
+import ProfileEdit from './components/ProfileEdit.vue';
 
 const routes = [
     {
@@ -55,6 +57,16 @@ const routes = [
         name: 'my_page',
         component: My_page,
     },
+    {
+        path: '/sell',
+        name: 'sell',
+        component: Sell
+    },
+    {
+        path: '/edit-profile',
+        name: 'profileEdit',
+        component: ProfileEdit
+    }
 ]
 
 const router = createRouter({

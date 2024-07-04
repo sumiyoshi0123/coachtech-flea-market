@@ -17,7 +17,7 @@ onMounted(async () => {
     user.value = userData;
 
     //出品した商品を取得
-    // const sellItemJson = await axios.get("http://localhost/api/sell");
+    // const sellItemJson = await axios.get("http://localhost/api/item");
     // const sellData = sellItemJson.data;
     // sellItems.value = sellData.itemData;
 
@@ -25,7 +25,6 @@ onMounted(async () => {
     const json = await axios.get('http://localhost/api/purchase');
     const purchaseData = json.data.purchases;
     purchaseItems.value = purchaseData;
-    console.log(purchaseData);
 });
 
 //切り替えタブ
@@ -42,6 +41,9 @@ const filteredItems = computed(() => {
 });
 
 //プロフィール編集画面へ
+const goToEditProfile = () => {
+    router.push({ name: "profileEdit" });
+};
 
 </script>
 
@@ -55,7 +57,7 @@ const filteredItems = computed(() => {
                 </div>
                 <div class="name">{{ user.name }}</div>
                 <div class="edit">
-                    <button class="edit_button" @click="">プロフィールを編集</button>
+                    <button class="edit_button" @click="goToEditProfile">プロフィールを編集</button>
                 </div>
             </div>
         </div>
@@ -95,6 +97,7 @@ const filteredItems = computed(() => {
 .name{
     font-weight: bold;
     font-size: x-large;
+    padding-right: 250px;
 }
 .edit {
     display: flex;
@@ -106,6 +109,7 @@ const filteredItems = computed(() => {
     color: red;
     border: solid 1px red;
     border-radius: 4px;
+    cursor: pointer;
 }
 .tab {
     padding-top: 30px;

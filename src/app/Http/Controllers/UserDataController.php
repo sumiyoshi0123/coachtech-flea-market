@@ -63,9 +63,26 @@ class UserDataController extends Controller
      * @param  \App\Models\UserData  $userData
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserData $userData)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'nullable|string',
+            'post_number' => 'nullable|string|max:10',
+            'address' => 'nullable|string|max:255',
+            'building_name' => 'nullable|string|max:255',
+        ]);
+
+        $user = Auth::user();
+        $userData = UserData::where('user_id', $user->id)->first();
+
+        if (!$userData) {
+            return response()->json(['message' => 'User data not found.'], 404);
+        }
+
+        $userData->update($request->all());
+
+        return response()->json(['message' => 'ユーザーデータが更新されました。'], 200);
     }
 
     /**

@@ -140,7 +140,7 @@ const deleteComment = async (commentId) => {
             <div class="comment_index">
                 <div class="users_comment" v-for="comment in comments" :key="comment.id">
                     <div class="user_data">
-                        <div class="user_icon">
+                        <div class="comment-user_icon">
                             <img :src="comment.user_data.icon" alt="User Icon" class="icon_image" />
                         </div>
                         <div class="user_name">{{ comment.user_data.name }}</div>
@@ -174,7 +174,7 @@ const deleteComment = async (commentId) => {
 }
 .item_img{
     width: 25%;
-    height: 380px; /* アスペクト比を維持 */
+    height: 380px;
     object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */
 }
 .item_data{
@@ -232,15 +232,20 @@ const deleteComment = async (commentId) => {
 .users_comment{
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 .user_data{
     display: flex;
+    align-items: center; /* アイコンと名前を中央揃え */
+    gap: 10px; /* アイコンと名前の間に10pxのスペースを追加 */
+}
+.comment-user_icon{
+    height: 50px;
 }
 .icon_image {
-    width: 24px;
-    height: 24px;
     border-radius: 50%; /* 丸いアイコンにする */
+    width: 40px; /* アイコンの幅 */
+    height: 40px; /* アイコンの高さ */
 }
 .user_name {
     font-weight: bold;

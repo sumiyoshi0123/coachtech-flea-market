@@ -6,6 +6,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ConditionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +54,10 @@ Route::middleware((['auth:sanctum']))->group(function () {
     Route::get('/my_page', [UserDataController::class, 'index']);
     Route::get('/my_page/me', [UserDataController::class, 'show']);
     Route::post('/my_page', [UserDataController::class, 'updateAddress']);
+    Route::put('/my_page/me', [UserDataController::class, 'update']);
+    Route::post('/item', [ItemController::class], 'store');
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/conditions', [ConditionController::class, 'index']);
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
