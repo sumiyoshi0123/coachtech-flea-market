@@ -19125,7 +19125,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       price: 0,
       description: '',
       img_url: '',
-      likes: false // 初期状態としてお気に入りの状態を持つ
+      likes: false,
+      // 初期状態としてお気に入りの状態を持つ
+      category: null,
+      condition: null
     });
     var likesCount = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
     var commentsCount = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
@@ -19143,6 +19146,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       if (typeof price !== 'number') return '';
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     });
+
+    ///カテゴリーと商品状態
+    var categoryName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return item.value.category ? item.value.category.name : '';
+    });
+    var conditionName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return item.value.condition ? item.value.condition.name : '';
+    });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var id, json, data, likeItems, likes, likesResponse, commentsResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -19156,11 +19167,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             json = _context.sent;
             data = json.data;
             item.value = data.data;
+            console.log(item.value);
 
             //マイリスト情報を取得
-            _context.next = 8;
+            _context.next = 9;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://localhost/api/like");
-          case 8:
+          case 9:
             likeItems = _context.sent;
             // アイテムIDのみを抽出
             likes = likeItems.data.likes.map(function (like) {
@@ -19169,19 +19181,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             item.value.likes = likes.includes(id);
 
             //マイリスト件数を取得
-            _context.next = 13;
+            _context.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://localhost/api/item/".concat(id, "/likes-count"));
-          case 13:
+          case 14:
             likesResponse = _context.sent;
             likesCount.value = likesResponse.data.likes_count;
 
             // コメント件数を取得
-            _context.next = 17;
+            _context.next = 18;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://localhost/api/comments/".concat(id));
-          case 17:
+          case 18:
             commentsResponse = _context.sent;
             commentsCount.value = commentsResponse.data.comments.length;
-          case 19:
+          case 20:
           case "end":
             return _context.stop();
         }
@@ -19248,6 +19260,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       route: route,
       formattedDescription: formattedDescription,
       formattedPrice: formattedPrice,
+      categoryName: categoryName,
+      conditionName: conditionName,
       toggleLike: toggleLike,
       comment: comment,
       purchase: purchase,
@@ -19429,31 +19443,56 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var activeTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('all');
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var json, data, myListJson;
+      var myListJson;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost/api/item");
+            return fetchItems();
           case 2:
-            json = _context.sent;
-            data = json.data;
-            items.value = data.itemData;
-
-            // マイリストのアイテムを取得
-            _context.next = 7;
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/api/like');
-          case 7:
+          case 4:
             myListJson = _context.sent;
             myList.value = myListJson.data.likes.map(function (like) {
               return like.item;
             }); // itemオブジェクトのリストに変換
-          case 9:
+          case 6:
           case "end":
             return _context.stop();
         }
       }, _callee);
     })));
+
+    // 商品一覧を取得する関数
+    var fetchItems = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var json;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost/api/item");
+            case 3:
+              json = _context2.sent;
+              items.value = json.data.itemData;
+              _context2.next = 10;
+              break;
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.error('商品一覧の取得に失敗しました:', _context2.t0);
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 7]]);
+      }));
+      return function fetchItems() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
 
     //Detail.vueへ
     var goToDetail = function goToDetail(itemId) {
@@ -19481,6 +19520,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       myList: myList,
       router: router,
       activeTab: activeTab,
+      fetchItems: fetchItems,
       goToDetail: goToDetail,
       changeTab: changeTab,
       filteredItems: filteredItems,
@@ -19634,7 +19674,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var activeTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('sell');
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var userJson, userData, json, purchaseData;
+      var userJson, userData, sellItemJson, sellData, json, purchaseData;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -19646,18 +19686,21 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             user.value = userData;
 
             //出品した商品を取得
-            // const sellItemJson = await axios.get("http://localhost/api/item");
-            // const sellData = sellItemJson.data;
-            // sellItems.value = sellData.itemData;
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost/api/user_items");
+          case 7:
+            sellItemJson = _context.sent;
+            sellData = sellItemJson.data.userItems;
+            sellItems.value = sellData;
 
             // 購入した商品を取得
-            _context.next = 7;
+            _context.next = 12;
             return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost/api/purchase');
-          case 7:
+          case 12:
             json = _context.sent;
             purchaseData = json.data.purchases;
             purchaseItems.value = purchaseData;
-          case 10:
+          case 15:
           case "end":
             return _context.stop();
         }
@@ -20117,27 +20160,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Sell',
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose;
     __expose();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
+    var userId = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var itemName = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var itemBrand = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     var itemDescription = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     var itemPrice = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     var categories = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var conditions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var category = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(categories.value.length > 0 ? categories.value[0].id : null);
+    var condition = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(conditions.value.length > 0 ? conditions.value[0].id : null);
     var imageUrl = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var imageFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null); // 画像ファイルを保存するための変数
 
     var handleFileUpload = function handleFileUpload(event) {
       var file = event.target.files[0];
       if (file) {
+        imageFile.value = file; // 画像ファイルをimageFileに設定
         var reader = new FileReader();
         reader.onload = function (e) {
           imageUrl.value = e.target.result;
@@ -20155,79 +20208,174 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 0:
               _context.prev = 0;
               formData = new FormData();
+              formData.append('user_id', userId.value);
               formData.append('name', itemName.value);
+              formData.append('brand', itemBrand.value);
               formData.append('description', itemDescription.value);
               formData.append('price', itemPrice.value);
-              formData.append('category_id', category.value);
-              formData.append('condition_id', condition.value);
+              // categoryとconditionがnullでないことを確認してから追加
+              if (category.value !== null) {
+                formData.append('category_id', category.value);
+              }
+              if (condition.value !== null) {
+                formData.append('condition_id', condition.value);
+              }
               if (imageFile.value) {
                 formData.append('image', imageFile.value);
               }
-              _context.next = 10;
-              return axios.post("http://localhost/api/item", formData, {
+              _context.next = 12;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://localhost/api/item", formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
               });
-            case 10:
+            case 12:
               response = _context.sent;
               alert('商品が正常に出品されました！');
               console.log(response.data);
-              _context.next = 19;
+              router.push({
+                name: "item"
+              });
+              _context.next = 22;
               break;
-            case 15:
-              _context.prev = 15;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](0);
               alert('出品処理に失敗しました。');
               console.error(_context.t0);
-            case 19:
+            case 22:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 15]]);
+        }, _callee, null, [[0, 18]]);
       }));
       return function submitItem() {
         return _ref2.apply(this, arguments);
       };
     }();
 
-    // //カテゴリーの取得
-    // const fetchCategories = async () => {
-    //     try {
-    //         const response = await axios.get("http://localhost/api/categories");
-    //         categories.value = response.data;
-    //     } catch (error) {
-    //         console.error('カテゴリーの取得に失敗しました:', error);
-    //     }
-    // };
+    //カテゴリーの取得
+    var fetchCategories = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://localhost/api/categories");
+            case 3:
+              response = _context2.sent;
+              categories.value = response.data;
+              _context2.next = 10;
+              break;
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.error('カテゴリーの取得に失敗しました:', _context2.t0);
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 7]]);
+      }));
+      return function fetchCategories() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
 
-    // //商品状態の取得
-    // const fetchConditions = async () => {
-    //     try {
-    //         const response = await axios.get("http://localhost/api/conditions");
-    //         conditions.value = response.data;
-    //     } catch (error) {
-    //         console.error('商品の状態の取得に失敗しました:', error);
-    //     }
-    // };
+    //商品状態の取得
+    var fetchConditions = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://localhost/api/conditions");
+            case 3:
+              response = _context3.sent;
+              conditions.value = response.data;
+              _context3.next = 10;
+              break;
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3["catch"](0);
+              console.error('商品の状態の取得に失敗しました:', _context3.t0);
+            case 10:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[0, 7]]);
+      }));
+      return function fetchConditions() {
+        return _ref4.apply(this, arguments);
+      };
+    }();
 
-    // // コンポーネントのマウント時にデータを取得
-    // onMounted(() => {
-    //     fetchCategories();
-    //     fetchConditions();
-    // });
+    // ユーザー情報を取得する関数
+    var fetchUserInfo = /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('http://localhost/api/user');
+            case 3:
+              response = _context4.sent;
+              userId.value = response.data.id; // ユーザーIDを設定
+              _context4.next = 10;
+              break;
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4["catch"](0);
+              console.error('ユーザー情報の取得に失敗しました:', _context4.t0);
+            case 10:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, null, [[0, 7]]);
+      }));
+      return function fetchUserInfo() {
+        return _ref5.apply(this, arguments);
+      };
+    }();
 
+    // コンポーネントのマウント時にデータを取得
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      fetchCategories();
+      fetchConditions();
+      fetchUserInfo();
+    });
     var __returned__ = {
+      router: router,
+      userId: userId,
       itemName: itemName,
+      itemBrand: itemBrand,
       itemDescription: itemDescription,
       itemPrice: itemPrice,
       categories: categories,
       conditions: conditions,
+      category: category,
+      condition: condition,
       imageUrl: imageUrl,
       imageFile: imageFile,
       handleFileUpload: handleFileUpload,
       submitItem: submitItem,
-      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
+      fetchCategories: fetchCategories,
+      fetchConditions: fetchConditions,
+      fetchUserInfo: fetchUserInfo,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
+      get axios() {
+        return axios__WEBPACK_IMPORTED_MODULE_2__["default"];
+      },
+      get useRouter() {
+        return vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter;
+      }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -20555,7 +20703,26 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "description_title"
 }, "商品説明", -1 /* HOISTED */);
 var _hoisted_18 = ["innerHTML"];
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"item_information\"><p class=\"information_title\">商品の情報</p><div class=\"item_category\"><p>カテゴリー</p><div class=\"category_tag\"></div></div><div class=\"item_condition\"><p>商品の状態</p><div class=\"condition_tag\"></div></div></div>", 1);
+var _hoisted_19 = {
+  "class": "item_information"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "information_title"
+}, "商品の情報", -1 /* HOISTED */);
+var _hoisted_21 = {
+  "class": "item_category"
+};
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "カテゴリー", -1 /* HOISTED */);
+var _hoisted_23 = {
+  "class": "category_tag"
+};
+var _hoisted_24 = {
+  "class": "item_condition"
+};
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "商品の状態", -1 /* HOISTED */);
+var _hoisted_26 = {
+  "class": "condition_tag"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "item_img",
@@ -20573,7 +20740,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "購入する"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "description",
     innerHTML: $setup.formattedDescription
-  }, null, 8 /* PROPS */, _hoisted_18)]), _hoisted_19])])], 64 /* STABLE_FRAGMENT */);
+  }, null, 8 /* PROPS */, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.categoryName), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.conditionName), 1 /* TEXT */)])])])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20818,11 +20985,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: item.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       onClick: function onClick($event) {
-        return _ctx.goToDetail(item.id);
+        return _ctx.goToDetail($setup.activeTab === 'sell' ? item.id : item.item.id);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       "class": "item_image",
-      src: item.item.img_url,
+      src: $setup.activeTab === 'sell' ? item.img_url : item.item.img_url,
       alt: "Image"
     }, null, 8 /* PROPS */, _hoisted_9)], 8 /* PROPS */, _hoisted_8)]);
   }), 128 /* KEYED_FRAGMENT */))])])], 64 /* STABLE_FRAGMENT */);
@@ -21131,7 +21298,8 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "itemImage"
+    "for": "itemImage",
+    "class": "group_title"
   }, "商品画像", -1 /* HOISTED */);
 });
 var _hoisted_5 = {
@@ -21148,7 +21316,8 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "category"
+    "for": "category",
+    "class": "group_title"
   }, "カテゴリー", -1 /* HOISTED */);
 });
 var _hoisted_10 = ["value"];
@@ -21157,7 +21326,8 @@ var _hoisted_11 = {
 };
 var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "condition"
+    "for": "condition",
+    "class": "group_title"
   }, "商品の状態", -1 /* HOISTED */);
 });
 var _hoisted_13 = ["value"];
@@ -21171,7 +21341,8 @@ var _hoisted_15 = {
 };
 var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "itemName"
+    "for": "itemName",
+    "class": "group_title"
   }, "商品名", -1 /* HOISTED */);
 });
 var _hoisted_17 = {
@@ -21179,31 +21350,42 @@ var _hoisted_17 = {
 };
 var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "itemDescription"
+    "for": "itemBrand",
+    "class": "group_title"
+  }, "ブランド", -1 /* HOISTED */);
+});
+var _hoisted_19 = {
+  "class": "form_group"
+};
+var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": "itemDescription",
+    "class": "group_title"
   }, "商品の説明", -1 /* HOISTED */);
 });
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "section_title"
   }, "販売価格", -1 /* HOISTED */);
 });
-var _hoisted_20 = {
+var _hoisted_22 = {
   "class": "form_group"
 };
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "itemPrice"
+    "for": "itemPrice",
+    "class": "group_title"
   }, "販売価格", -1 /* HOISTED */);
 });
-var _hoisted_22 = {
+var _hoisted_24 = {
   "class": "price_input"
 };
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "currency_symbol"
   }, "¥", -1 /* HOISTED */);
 });
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     "class": "submit_button"
@@ -21215,7 +21397,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     id: "itemImage",
-    onChange: $setup.handleFileUpload
+    onChange: $setup.handleFileUpload,
+    "class": "form_group-input"
   }, null, 32 /* NEED_HYDRATION */), $setup.imageUrl ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $setup.imageUrl,
     alt: "商品画像",
@@ -21223,41 +21406,53 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8 /* PROPS */, _hoisted_6)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "category",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.category = $event;
-    })
+      return $setup.category = $event;
+    }),
+    "class": "form_group-select"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, function (cat) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: cat.id,
       value: cat.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cat.name), 9 /* TEXT, PROPS */, _hoisted_10);
-  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.category]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.category]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "condition",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.condition = $event;
-    })
+      return $setup.condition = $event;
+    }),
+    "class": "form_group-select"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.conditions, function (cond) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: cond.id,
       value: cond.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cond.name), 9 /* TEXT, PROPS */, _hoisted_13);
-  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.condition]])]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.condition]])]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "itemName",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.itemName = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemName]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    id: "itemDescription",
+    }),
+    "class": "form_group-input"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemName]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    id: "itemBrand",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.itemBrand = $event;
+    }),
+    "class": "form_group-input"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemBrand]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    id: "itemDescription",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.itemDescription = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemDescription]])]), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }),
+    "class": "form_group-textarea"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemDescription]])]), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     id: "itemPrice",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.itemPrice = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemPrice]])])]), _hoisted_24], 32 /* NEED_HYDRATION */)]);
+    }),
+    "class": "form_group-input"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.itemPrice]])])]), _hoisted_26], 32 /* NEED_HYDRATION */)]);
 }
 
 /***/ }),
@@ -23420,7 +23615,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: 380px; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.item_brand {\n    font-size: small;\n}\n.item_price {\n    margin-top: 10px;\n}\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n}\n.like_icon,\n.comment_icon {\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n}\n.like_count,\n.comment_count{\n    font-size: 10px;\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n.purchase_button{\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n    margin-top: 10px;\n}\n.description_title, .information_title{\n    font-size: x-large;\n    font-weight: bold;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.detail_index{\n    display: flex;\n    padding-top: 100px;\n    justify-content: center;\n}\n.item_img{\n    width: 25%;\n    height: 380px; /* アスペクト比を維持 */\n    -o-object-fit: cover;\n       object-fit: cover; /* 画像のアスペクト比を維持しながらサイズを調整 */\n}\n.item_data{\n    display: flex;\n    flex-direction: column;\n    padding-left: 100px;\n}\n.description {\n    white-space: pre-wrap;\n}\n.item_name{\n    font-size: xx-large;\n    font-weight: bold;\n}\n.item_brand {\n    font-size: small;\n}\n.item_price {\n    margin-top: 10px;\n}\n.button_icon {\n    display: flex;\n    gap: 10px; /* ボタン間のスペースを設定 */\n}\n.like_icon,\n.comment_icon {\n    display: flex;\n    flex-direction: column;\n    text-align: center;\n}\n.like_count,\n.comment_count{\n    font-size: 10px;\n}\n.like_button,\n.comment_button {\n    border: none;\n    background: none;\n    cursor: pointer;\n    display: flex; /* ボタン内の内容を横並びにする */\n    align-items: center; /* ボタン内の要素を中央揃えにする */\n}\n.button_image {\n    width: 24px;\n    height: 24px;\n}\n.purchase_button{\n    color: white;\n    font-weight: bold;\n    cursor: pointer;\n    background-color: rgba(255, 0, 0, 0.670);\n    border: none;\n    width: 200px;\n    height: 25px;\n    margin-top: 10px;\n}\n.description_title, .information_title{\n    font-size: x-large;\n    font-weight: bold;\n}\n.item_category,\n.item_condition{\n    display: flex;\n}\n.category_tag,\n.condition_tag{\n    margin: 16px 30px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23612,7 +23807,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.sell_page[data-v-49eebd6d] {\n    max-width: 600px;\n    margin: 0 auto;\n    padding: 20px;\n}\n.page_title[data-v-49eebd6d] {\n    text-align: center;\n    margin-bottom: 20px;\n}\n.form_group[data-v-49eebd6d] {\n    margin-bottom: 20px;\n}\n.section_title[data-v-49eebd6d] {\n    margin-top: 30px;\n    margin-bottom: 10px;\n    font-size: 1.2em;\n    font-weight: bold;\n    border-bottom: 1px solid #ccc;\n    padding-bottom: 5px;\n    color: gray;\n}\n.form_group label[data-v-49eebd6d] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n}\n.form_group input[data-v-49eebd6d],\n.form_group textarea[data-v-49eebd6d] {\n    width: 100%;\n    padding: 10px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n}\n.form_group textarea[data-v-49eebd6d] {\n    resize: vertical;\n}\n.preview_image[data-v-49eebd6d] {\n    max-width: 100%;\n    margin-top: 10px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n}\n.price_input[data-v-49eebd6d] {\n    position: relative;\n    display: flex;\n    align-items: center;\n}\n.currency_symbol[data-v-49eebd6d] {\n    position: absolute;\n    left: 10px;\n    z-index: 1;\n    font-size: 1em;\n    color: #333;\n}\n.price_input input[data-v-49eebd6d] {\n    padding-left: 20px;\n}\n.submit_button[data-v-49eebd6d] {\n    width: 100%;\n    padding: 10px;\n    background-color: #ff6347;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    cursor: pointer;\n}\n.submit_button[data-v-49eebd6d]:hover {\n    background-color: #ff4500;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sell_page[data-v-49eebd6d] {\n    max-width: 600px;\n    margin: 0 auto;\n    padding: 20px;\n}\n.page_title[data-v-49eebd6d] {\n    text-align: center;\n    margin-bottom: 20px;\n}\n.form_group[data-v-49eebd6d] {\n    margin-bottom: 20px;\n}\n.section_title[data-v-49eebd6d] {\n    margin-top: 30px;\n    margin-bottom: 10px;\n    font-size: 1.2em;\n    font-weight: bold;\n    border-bottom: 1px solid #ccc;\n    padding-bottom: 5px;\n    color: gray;\n}\n.group_title[data-v-49eebd6d] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n}\n.form_group-input[data-v-49eebd6d],\n.form_group-textarea[data-v-49eebd6d],\n.form_group-select[data-v-49eebd6d] {\n    width: 100%;\n    padding: 10px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n}\n.form_group-textarea[data-v-49eebd6d] {\n    resize: vertical;\n}\n.preview_image[data-v-49eebd6d] {\n    max-width: 100%;\n    margin-top: 10px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n}\n.price_input[data-v-49eebd6d] {\n    position: relative;\n    display: flex;\n    align-items: center;\n}\n.currency_symbol[data-v-49eebd6d] {\n    position: absolute;\n    left: 10px;\n    z-index: 1;\n    font-size: 1em;\n    color: #333;\n}\n.price_input input[data-v-49eebd6d] {\n    padding-left: 20px;\n}\n.submit_button[data-v-49eebd6d] {\n    width: 100%;\n    padding: 10px;\n    background-color: #ff6347;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    cursor: pointer;\n}\n.submit_button[data-v-49eebd6d]:hover {\n    background-color: #ff4500;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

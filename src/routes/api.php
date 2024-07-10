@@ -55,10 +55,14 @@ Route::middleware((['auth:sanctum']))->group(function () {
     Route::get('/my_page/me', [UserDataController::class, 'show']);
     Route::post('/my_page', [UserDataController::class, 'updateAddress']);
     Route::put('/my_page/me', [UserDataController::class, 'update']);
-    Route::post('/item', [ItemController::class], 'store');
+    Route::get('/item', [ItemController::class, 'index']);
+    Route::get('/item/{id}', [ItemController::class, 'show']);
+    Route::post('/item', [ItemController::class, 'store']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/conditions', [ConditionController::class, 'index']);
+    Route::get('/user_items', [ItemController::class, 'userItems']);
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
-Route::apiResource('/item', ItemController::class);
+Route::get('/item', [ItemController::class, 'index']);
+Route::get('/item/{id}', [ItemController::class, 'show']);

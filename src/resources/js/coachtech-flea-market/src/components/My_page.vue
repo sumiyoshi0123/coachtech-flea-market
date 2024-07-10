@@ -17,9 +17,9 @@ onMounted(async () => {
     user.value = userData;
 
     //出品した商品を取得
-    // const sellItemJson = await axios.get("http://localhost/api/item");
-    // const sellData = sellItemJson.data;
-    // sellItems.value = sellData.itemData;
+    const sellItemJson = await axios.get("http://localhost/api/user_items");
+    const sellData = sellItemJson.data.userItems;
+    sellItems.value = sellData;
 
     // 購入した商品を取得
     const json = await axios.get('http://localhost/api/purchase');
@@ -69,8 +69,9 @@ const goToEditProfile = () => {
         </div>
         <div class="item-list">
             <div class="item" v-for="item in filteredItems" :key="item.id">
-                <div @click="goToDetail(item.id)">
-                    <img class=" item_image" :src="item.item.img_url" alt="Image" />
+                <div @click="goToDetail(activeTab === 'sell' ? item.id : item.item.id)">
+                    <img class="item_image" :src="activeTab === 'sell' ? item.img_url : item.item.img_url"
+                        alt="Image" />
                 </div>
             </div>
         </div>

@@ -11,7 +11,9 @@ const item = ref({
     price: 0,
     description: '',
     img_url: '',
-    likes: false // 初期状態としてお気に入りの状態を持つ
+    likes: false, // 初期状態としてお気に入りの状態を持つ
+    category: null,
+    condition: null
 });
 
 const likesCount = ref(0);
@@ -32,6 +34,10 @@ const formattedPrice = computed(() => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 });
 
+///カテゴリーと商品状態
+const categoryName = computed(() => item.value.category ? item.value.category.name : '');
+const conditionName = computed(() => item.value.condition ? item.value.condition.name : '');
+
 onMounted(async () => {
     // idを整数に変換
     const id = parseInt(route.params.id, 10);
@@ -39,6 +45,7 @@ onMounted(async () => {
     const json = await axios.get(`http://localhost/api/item/${id}`);
     const data = json.data;
     item.value = data.data;
+    console.log(item.value);
 
     //マイリスト情報を取得
     const likeItems = await axios.get("http://localhost/api/like");
@@ -116,11 +123,11 @@ const purchase = () => {
                 <p class="information_title">商品の情報</p>
                 <div class="item_category">
                     <p>カテゴリー</p>
-                    <div class="category_tag"></div>
+                    <div class="category_tag">{{ categoryName }}</div>
                 </div>
                 <div class="item_condition">
                     <p>商品の状態</p>
-                    <div class="condition_tag"></div>
+                    <div class="condition_tag">{{ conditionName }}</div>
                 </div>
             </div>
         </div>
@@ -197,5 +204,12 @@ const purchase = () => {
     font-size: x-large;
     font-weight: bold;
 }
-
+.item_category,
+.item_condition{
+    display: flex;
+}
+.category_tag,
+.condition_tag{
+    margin: 16px 30px;
+}
 </style>

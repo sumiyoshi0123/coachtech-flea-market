@@ -10,14 +10,22 @@ const router = useRouter();
 const activeTab = ref('all');
 
 onMounted(async () => {
-    const json = await axios.get("http://localhost/api/item");
-    const data = json.data;
-    items.value = data.itemData;
+    await fetchItems(); // ページロード時に商品データを取得
 
     // マイリストのアイテムを取得
     const myListJson = await axios.get('http://localhost/api/like');
     myList.value = myListJson.data.likes.map(like => like.item); // itemオブジェクトのリストに変換
 });
+
+// 商品一覧を取得する関数
+const fetchItems = async () => {
+    try {
+        const json = await axios.get("http://localhost/api/item");
+        items.value = json.data.itemData;
+    } catch (error) {
+        console.error('商品一覧の取得に失敗しました:', error);
+    }
+};
 
 //Detail.vueへ
 const goToDetail = (itemId) => {

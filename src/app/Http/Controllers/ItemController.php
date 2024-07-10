@@ -32,24 +32,37 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        //バリデーション
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'price' => 'required|integer',
+            'description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'condition_id' => 'required|exists:conditions,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーション
+        ]);
+
         $user = Auth::user();
 
-        // ファイルアップロード
+        // 画像の保存
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/images');
-            $request['img_url'] = Storage::url($path);
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['img_url'] = $imagePath;
+        } else {
+            return response()->json(['message' => 'Image upload failed'], 400);
         }
 
         // 商品を作成
         $item = Item::create([
             'user_id' => $user->id,
-            'name' => $request->name,
-            'brand' => $request->brand,
-            'price' => $request->price,
-            'img_url' => $request->img_url,
-            'description' => $request->description,
-            'category_id' => $request['category_id'],
-            'condition_id' => $request['condition_id'],
+            'name' => $validatedData['name'],
+            'brand' => $validatedData['brand'],
+            'price' => $validatedData['price'],
+            'img_url' => $validatedData['img_url'],
+            'description' => $validatedData['description'],
+            'category_id' => $validatedData['category_id'],
+            'condition_id' => $validatedData['condition_id'],
         ]);
 
         return response()->json([
@@ -66,7 +79,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = Item::find($id);
+        $item = Item::with('category', 'condition')->find($id);
 
         return response()->json([
             'data' => $item
@@ -94,5 +107,19 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
+    }
+
+    //出品アイテムの表示
+    public function userItems()
+    {
+        // 現在ログインしているユーザーのIDを取得
+        $userId = Auth::id();
+
+        // ユーザーが出品した商品を取得するクエリ
+        $userItems = Item::where('user_id', $userId)->get();
+
+        return response()->json([
+            'userItems' => $userItems,
+        ], 200);
     }
 }

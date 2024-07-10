@@ -14,7 +14,7 @@ class ConditionController extends Controller
      */
     public function index()
     {
-        return Condition::all();
+        return response()->json(Condition::all());
     }
 
     /**
