@@ -43,10 +43,10 @@
  ・@vue/cli 5.0.8
 
 ## テーブル設計
- 
+![テーブル仕様書](https://github.com/sumiyoshi0123/coachtech-flea-market/assets/138268657/0b42c8dc-27e3-4bb6-bf5b-e135076264b1)
 
 ## ER図
-
+![ER図](https://github.com/sumiyoshi0123/coachtech-flea-market/assets/138268657/0833744e-f33f-4353-b6fe-af8f17ee32c3)
 
 ## 環境構築
 1.リポジトリのクローン  
